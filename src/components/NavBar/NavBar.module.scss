@@ -1,0 +1,30 @@
+.nav {
+    width: 100%;
+    background-color: #ffcf00;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 30px 0px 30px;
+    box-sizing: border-box;
+    align-items: center;
+    img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.link {
+    &:hover {
+        color: orange;
+    }
+}
+
+.active_link {
+    text-decoration: underline;
+    color: orange;
+    &:visited {
+        color: orange;
+    }
+    &:hover {
+        color: blue;
+    }
+}

@@ -1,0 +1,5 @@
+@use "../../theme.module" as theme;
+
+.star_rating {
+    color: theme.$primary-yellow;
+}

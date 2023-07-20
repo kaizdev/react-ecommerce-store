@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { getAllProducts } from "./services/products-service";
+import ProductList from "./containers/ProductList/ProductList";
+import ProductPage from "./components/ProductPage/ProductPage";
+import NavBar from "./components/NavBar/NavBar";
+import FavouriteList from "./containers/FavouriteList/FavouriteList";
+import CartList from "./containers/CartList/CartList";
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [products, setProducts] = useState([]);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    // useEffect to getAllProducts()
+    useEffect(() => {
+        getAllProducts()
+            .then((productData) => setProducts(productData))
+            .catch((error) => console.log(error));
+    }, []);
+
+    return (
+        <>
+            <BrowserRouter>
+                <NavBar />
+                <Routes>
+                    <Route path="/" element={<ProductList />} />
+                    <Route path="/:id" element={<ProductPage />} />
+                    <Route path="/cart" element={<CartList />} />
+                    <Route path="/favourites" element={<FavouriteList />} />
+                </Routes>
+            </BrowserRouter>
+        </>
+    );
 }
 
-export default App
+export default App;
