@@ -41,6 +41,7 @@ export const getProductById = async (id) => {
     return { id: snapshot.id, ...snapshot.data() };
 };
 
+// Toggle favourite item
 export const updateFavouriteById = async (id) => {
     const docRef = doc(db, "products", id);
     const docSnapshot = await getDoc(docRef);
@@ -51,9 +52,79 @@ export const updateFavouriteById = async (id) => {
             productFavourite: !productFavourite,
         });
     }
-
     return await getProductById(id);
 };
+
+// Adding to cart
+export const increaseCartQtyById = async (id) => {
+    const docRef = doc(db, "products", id);
+    const docSnapshot = await getDoc(docRef);
+    if (docSnapshot.exists()) {
+        const product = docSnapshot.data();
+
+        if (product.productStock > 0) {
+            await updateDoc(docRef, {
+                productCartQty: increment(1),
+                productStock: increment(-1),
+            });
+        } else {
+            console.log("No more product left in stock");
+        }
+    }
+
+    // const updatedDoc = await updateDoc(docRef, {
+    //     productCartQty: increment(1),
+    // });
+    // return await getProductById(id);
+};
+
+// Reducing from cart
+export const decreaseCartQtyById = async (id) => {
+    const docRef = doc(db, "products", id);
+    const docSnapshot = await getDoc(docRef);
+    if (docSnapshot.exists()) {
+        const product = docSnapshot.data();
+
+        if (product.productCartQty > 0) {
+            await updateDoc(docRef, {
+                productCartQty: increment(-1),
+                productStock: increment(1),
+            });
+        } else {
+            console.log("Cannot decrease quantity below 0");
+        }
+    }
+};
+
+// Update specific quantity to cart (typed)
+export const increaseCartQtyInputValById = async (id, newQty) => {
+    const docRef = doc(db, "products", id);
+    const updatedDoc = await updateDoc(docRef, {
+        productCartQty: newQty,
+    });
+};
+
+// Remove from cart
+export const removeFromCartById = async (id) => {
+    const docRef = doc(db, "products", id);
+    const docSnapshot = await getDoc(docRef);
+    if (docSnapshot.exists()) {
+        const product = docSnapshot.data();
+        const newProductStock = product.productStock + product.productCartQty;
+
+        await updateDoc(docRef, {
+            productCartQty: 0,
+            productStock: newProductStock,
+        });
+    }
+};
+
+// export const removeFromCartById = async (id) => {
+//     const docRef = doc(db, "products", id);
+//     const updatedDoc = await updateDoc(docRef, {
+//         productCartQty: 0,
+//     });
+// };
 
 // export const updateFavourites = () => {
 //     updateFavouriteById(id);

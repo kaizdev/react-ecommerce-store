@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getProductSubscription } from "../../services/products-service";
 import CartCard from "../../components/CartCard/CartCard";
 
-const CartList = () => {
+const CartList = ({ cartItemsTotalQty }) => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -12,9 +12,11 @@ const CartList = () => {
 
     const cartItems = products.filter((product) => product.productCartQty > 0);
 
-    const cartItemsTotalQty = products.reduce((acc, curr) => {
-        return acc + curr.productCartQty;
-    }, 0);
+    // const cartItemsTotalQty = products
+    //     .filter((product) => typeof product.productCartQty === "number")
+    //     .reduce((acc, curr) => {
+    //         return acc + curr.productCartQty;
+    //     }, 0);
 
     if (cartItems.length === 0) {
         return <p>Nothing in your cart. Please add some items to your cart!</p>;
@@ -22,6 +24,8 @@ const CartList = () => {
 
     return (
         <>
+            <div>{cartItemsTotalQty}</div>
+            {/* What should the cart page say? */}
             <section>
                 {cartItems.map((product) => (
                     <CartCard key={product.id} product={product} />

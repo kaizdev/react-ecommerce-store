@@ -10,15 +10,27 @@
         width: 40px;
         height: 40px;
     }
+    &_fav_cart {
+        display: flex;
+    }
+}
+
+.cart_total {
+    height: 100%;
+    width: 32px;
+    display: flex;
+    align-items: center;
 }
 
 .link {
+    display: flex;
     &:hover {
         color: orange;
     }
 }
 
 .active_link {
+    display: flex;
     text-decoration: underline;
     color: orange;
     &:visited {

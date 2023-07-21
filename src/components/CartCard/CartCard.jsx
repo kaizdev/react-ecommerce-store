@@ -1,5 +1,12 @@
 import { Minus, Plus, Trash } from "@phosphor-icons/react";
 import styles from "./CartCard.module.scss";
+import {
+    increaseCartQtyById,
+    decreaseCartQtyById,
+    increaseCartQtyInputValById,
+    removeFromCartById,
+} from "../../services/products-service";
+import { useRef } from "react";
 
 const CartCard = ({ product }) => {
     const {
@@ -15,7 +22,19 @@ const CartCard = ({ product }) => {
         productRating,
         productStock,
         id,
+        productCartQty,
     } = product;
+
+    // const inputRef = useRef();
+
+    // const onInputChange = async (event) => {
+    //     if (event.key === "Enter") {
+    //         const newQty = +inputRef.current.value;
+    //         if (!isNaN(newQty) && newQty >= 0) {
+    //             await increaseCartQtyInputValById(id, newQty);
+    //         }
+    //     }
+    // };
 
     return (
         <>
@@ -26,11 +45,41 @@ const CartCard = ({ product }) => {
             />
             <p>{productName}</p>
             <p>{productPrice}</p>
+            <p>{productCartQty}</p>
             <div>
-                <Minus size={26} />
-                <input type="number" min={0} />
-                <Plus size={26} />
-                <Trash size={26} />
+                <button>
+                    <Minus
+                        size={16}
+                        onClick={() => {
+                            decreaseCartQtyById(id);
+                        }}
+                    />
+                </button>
+                <input
+                    type="number"
+                    min={0}
+                    // ref={inputRef}
+                    value={productCartQty}
+                    // onKeyDown={onInputChange}
+                    onChange={() => {}}
+                />
+                {/* {productCartQty} */}
+
+                <button>
+                    <Plus
+                        size={16}
+                        onClick={() => {
+                            increaseCartQtyById(id);
+                        }}
+                    />
+                </button>
+                <Trash
+                    cursor={"pointer"}
+                    size={26}
+                    onClick={() => {
+                        removeFromCartById(id);
+                    }}
+                />
             </div>
         </>
     );
