@@ -2,3 +2,38 @@
     height: 100px;
     width: 100px;
 }
+
+.qty_input {
+    width: 40px;
+    text-align: center;
+    height: 21px;
+}
+
+hr {
+    border: none;
+    background-color: lightgray;
+    height: 1px;
+}
+
+.card_container_inner {
+    display: flex;
+    flex-grow: 1;
+}
+
+.cart_price_qty {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card_container_outer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card_container_middle {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    padding-left: 45px;
+    padding-right: 60px;
+}

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { getProductSubscription } from "../../services/products-service";
 import CartCard from "../../components/CartCard/CartCard";
+import { ShieldCheck } from "@phosphor-icons/react";
+import styles from "./CartList.module.scss";
 
-const CartList = ({ cartItemsTotalQty }) => {
+const CartList = ({ cartItemsTotalQty, cartItemsTotalPrice }) => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -24,13 +26,34 @@ const CartList = ({ cartItemsTotalQty }) => {
 
     return (
         <>
-            <div>{cartItemsTotalQty}</div>
-            {/* What should the cart page say? */}
-            <section>
-                {cartItems.map((product) => (
-                    <CartCard key={product.id} product={product} />
-                ))}
-            </section>
+            <main className={styles.cart_container}>
+                <section className={styles.cart_products_left}>
+                    {cartItems.map((product) => (
+                        <CartCard key={product.id} product={product} />
+                    ))}
+                </section>
+                <div className={styles.cart_summary_right}>
+                    <p>Order Summary</p>
+
+                    <div className={styles.order_value}>
+                        <p>Order value</p>
+                        <p>${cartItemsTotalPrice}</p>
+                    </div>
+
+                    <p style={{ color: "green" }}>
+                        Congratulations you qualify for FREE delivery
+                    </p>
+                    <div
+                        className={`${styles.order_value} ${styles.order_total}`}
+                    >
+                        <p>Order Total</p>
+                        <p>${cartItemsTotalPrice}</p>
+                    </div>
+                    <button className={styles.checkout_btn}>
+                        <ShieldCheck /> Checkout Securely
+                    </button>
+                </div>
+            </main>
         </>
     );
 };

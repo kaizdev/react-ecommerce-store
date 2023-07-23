@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import styles from "./ProductCard.module.scss";
 import { Heart } from "@phosphor-icons/react";
-import { updateFavouriteById } from "../../services/products-service";
+import {
+    increaseCartQtyById,
+    updateFavouriteById,
+} from "../../services/products-service";
 import StarRatings from "../StarRatings/StarRatings";
+import { useState } from "react";
 
 const ProductCard = ({ product }) => {
     const {
@@ -20,10 +24,17 @@ const ProductCard = ({ product }) => {
         id,
     } = product;
 
+    const [isClicked, setIsClicked] = useState(false);
+
     // const favouriteStyles = productFavourite === true;
 
     const updateFavourites = () => {
         updateFavouriteById(id);
+    };
+
+    const handleClick = () => {
+        increaseCartQtyById(id);
+        setIsClicked(true);
     };
 
     return (
@@ -56,7 +67,16 @@ const ProductCard = ({ product }) => {
                 <p>
                     <strong>{"$" + productPrice}</strong>
                 </p>
-                <button className={styles.add_btn}>Add to Bag</button>
+                <button
+                    className={
+                        isClicked
+                            ? `${styles.add_btn} ${styles.add_btn_clicked}`
+                            : styles.add_btn
+                    }
+                    onClick={handleClick}
+                >
+                    {isClicked ? "Product added to cart" : "Add to cart"}
+                </button>
             </div>
         </>
     );

@@ -30,6 +30,13 @@ function App() {
             return acc + curr.productCartQty;
         }, 0);
 
+    const cartItemsTotalPrice = products
+        .filter((product) => typeof product.productCartQty === "number")
+        .reduce((acc, curr) => {
+            return acc + curr.productCartQty * curr.productPrice;
+        }, 0)
+        .toFixed(2);
+
     return (
         <>
             <BrowserRouter>
@@ -43,6 +50,7 @@ function App() {
                             <CartList
                                 products={products}
                                 cartItemsTotalQty={cartItemsTotalQty}
+                                cartItemsTotalPrice={cartItemsTotalPrice}
                             />
                         }
                     />
