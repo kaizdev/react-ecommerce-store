@@ -71,11 +71,6 @@ export const increaseCartQtyById = async (id) => {
             console.log("No more product left in stock");
         }
     }
-
-    // const updatedDoc = await updateDoc(docRef, {
-    //     productCartQty: increment(1),
-    // });
-    // return await getProductById(id);
 };
 
 // Reducing from cart
@@ -118,14 +113,3 @@ export const removeFromCartById = async (id) => {
         });
     }
 };
-
-// export const removeFromCartById = async (id) => {
-//     const docRef = doc(db, "products", id);
-//     const updatedDoc = await updateDoc(docRef, {
-//         productCartQty: 0,
-//     });
-// };
-
-// export const updateFavourites = () => {
-//     updateFavouriteById(id);
-// };

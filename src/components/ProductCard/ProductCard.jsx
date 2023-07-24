@@ -26,8 +26,6 @@ const ProductCard = ({ product }) => {
 
     const [isClicked, setIsClicked] = useState(false);
 
-    // const favouriteStyles = productFavourite === true;
-
     const updateFavourites = () => {
         updateFavouriteById(id);
     };
@@ -82,5 +80,3 @@ const ProductCard = ({ product }) => {
     );
 };
 export default ProductCard;
-// todo: add stars for the rating
-// style the button orange

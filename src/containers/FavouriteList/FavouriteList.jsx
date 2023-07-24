@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getProductSubscription } from "../../services/products-service";
 import FavouriteCard from "../../components/FavouriteCard/FavouriteCard";
+import styles from "./FavouriteList.module.scss";
 
 const FavouriteList = () => {
     const [products, setProducts] = useState([]);
@@ -20,15 +21,7 @@ const FavouriteList = () => {
 
     return (
         <>
-            {/* <section>
-                {products
-                    .filter((product) => product.productFavourite)
-                    .map((product) => (
-                        <FavouriteCard key={product.id} product={product} />
-                    ))}
-            </section> */}
-
-            <section>
+            <section className={styles.list}>
                 {favouriteProducts.map((product) => (
                     <FavouriteCard key={product.id} product={product} />
                 ))}

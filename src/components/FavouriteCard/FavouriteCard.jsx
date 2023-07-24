@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import styles from "./FavouriteCard.module.scss";
-import { updateFavouriteById } from "../../services/products-service";
+import {
+    updateFavouriteById,
+    increaseCartQtyById,
+} from "../../services/products-service";
+import { useState } from "react";
+import StarRatings from "../StarRatings/StarRatings";
 
 const FavouriteCard = ({ product }) => {
     const {
@@ -22,6 +27,13 @@ const FavouriteCard = ({ product }) => {
         updateFavouriteById(id);
     };
 
+    const [isClicked, setIsClicked] = useState(false);
+
+    const handleClick = () => {
+        increaseCartQtyById(id);
+        setIsClicked(true);
+    };
+
     return (
         <>
             <div className={styles.card}>
@@ -39,11 +51,20 @@ const FavouriteCard = ({ product }) => {
                 <Link to={id}>
                     <h3>{productName}</h3>
                 </Link>
-                <p>{productRating}</p>
+                <StarRatings rating={productRating} />
                 <p>
                     <strong>{"$" + productPrice}</strong>
                 </p>
-                <button className={styles.add_btn}>Add to Bag</button>
+                <button
+                    className={
+                        isClicked
+                            ? `${styles.add_btn} ${styles.add_btn_clicked}`
+                            : styles.add_btn
+                    }
+                    onClick={handleClick}
+                >
+                    {isClicked ? "Product added to cart" : "Add to cart"}
+                </button>
                 <button className={styles.add_btn} onClick={updateFavourites}>
                     Remove from favourites
                 </button>

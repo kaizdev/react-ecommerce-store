@@ -11,13 +11,6 @@ import { getProductSubscription } from "./services/products-service";
 function App() {
     const [products, setProducts] = useState([]);
 
-    // // useEffect to getAllProducts()
-    // useEffect(() => {
-    //     getAllProducts()
-    //         .then((productData) => setProducts(productData))
-    //         .catch((error) => console.log(error));
-    // }, []);
-
     useEffect(() => {
         const unsub = getProductSubscription(setProducts);
         return () => unsub();

@@ -8,6 +8,7 @@
     flex-direction: column;
     border: 1px solid lightgrey;
     justify-content: flex-end;
+    margin-left: 5px;
 }
 
 .image_container {
@@ -44,13 +45,6 @@
     left: 5px;
     color: theme.$primary-orange;
 }
-// .card_image {
-//     display: block;
-//     width: 85%;
-//     margin: auto;
-//     margin-bottom: 0.25em;
-//     // border: 1px solid lightgrey;
-// }
 
 .add_btn {
     display: block;
@@ -68,7 +62,3 @@
         border: 2px solid rgb(108, 186, 116);
     }
 }
-
-// strong {
-//     font-weight: 900;
-// }

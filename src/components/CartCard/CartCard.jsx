@@ -25,17 +25,6 @@ const CartCard = ({ product }) => {
         productCartQty,
     } = product;
 
-    // const inputRef = useRef();
-
-    // const onInputChange = async (event) => {
-    //     if (event.key === "Enter") {
-    //         const newQty = +inputRef.current.value;
-    //         if (!isNaN(newQty) && newQty >= 0) {
-    //             await increaseCartQtyInputValById(id, newQty);
-    //         }
-    //     }
-    // };
-
     return (
         <>
             <main>
@@ -65,13 +54,10 @@ const CartCard = ({ product }) => {
                                     <input
                                         type="number"
                                         min={0}
-                                        // ref={inputRef}
                                         value={productCartQty}
                                         className={styles.qty_input}
-                                        // onKeyDown={onInputChange}
                                         onChange={() => {}}
                                     />
-                                    {/* {productCartQty} */}
 
                                     <button>
                                         <Plus
