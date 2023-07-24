@@ -48,8 +48,14 @@
     border-radius: 4px;
     border: 2px solid rgb(253, 128, 36);
     margin-bottom: 5px;
+    cursor: pointer;
     &_clicked {
         background-color: rgb(108, 186, 116);
         border: 2px solid rgb(108, 186, 116);
     }
+}
+
+.remove_fav {
+    background-color: rgb(236, 61, 61);
+    border: 2px solid rgb(236, 61, 61);
 }

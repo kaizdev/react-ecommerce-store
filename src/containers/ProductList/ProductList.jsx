@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { getProductSubscription } from "../../services/products-service";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import styles from "./ProductList.module.scss";
-import { CaretCircleRight } from "@phosphor-icons/react";
+import { CaretCircleLeft, CaretCircleRight } from "@phosphor-icons/react";
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
@@ -15,7 +15,11 @@ const ProductList = () => {
     const carouselRef = useRef(null);
 
     const scrollRight = () => {
-        carouselRef.current.scrollBy({ left: 300, behaviour: "smooth" });
+        carouselRef.current.scrollBy({ left: 300, behavior: "smooth" });
+    };
+
+    const scrollLeft = () => {
+        carouselRef.current.scrollBy({ left: -300, behavior: "smooth" });
     };
 
     return (
@@ -32,7 +36,14 @@ const ProductList = () => {
                     onClick={scrollRight}
                     size={52}
                     weight="fill"
-                    className={styles.caret_circle}
+                    className={styles.caret_circle_right}
+                />
+
+                <CaretCircleLeft
+                    onClick={scrollLeft}
+                    size={52}
+                    weight="fill"
+                    className={styles.caret_circle_left}
                 />
             </main>
         </>

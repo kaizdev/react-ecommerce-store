@@ -7,7 +7,14 @@
     overflow-x: auto;
 }
 
-.caret_circle {
+.caret_circle_left {
+    position: fixed;
+    left: 20px;
+    top: 250px;
+    color: theme.$primary-orange;
+}
+
+.caret_circle_right {
     position: fixed;
     right: 20px;
     top: 250px;

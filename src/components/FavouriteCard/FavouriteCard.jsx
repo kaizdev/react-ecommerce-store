@@ -39,7 +39,7 @@ const FavouriteCard = ({ product }) => {
             <div className={styles.card}>
                 <div className={styles.image_container}>
                     <div className={styles.image_inner}>
-                        <Link to={id}>
+                        <Link to={`/${id}`}>
                             <img
                                 className={styles.card_image}
                                 src={productImage}
@@ -48,7 +48,7 @@ const FavouriteCard = ({ product }) => {
                         </Link>
                     </div>
                 </div>
-                <Link to={id}>
+                <Link to={`/${id}`}>
                     <h3>{productName}</h3>
                 </Link>
                 <StarRatings rating={productRating} />
@@ -65,7 +65,10 @@ const FavouriteCard = ({ product }) => {
                 >
                     {isClicked ? "Product added to cart" : "Add to cart"}
                 </button>
-                <button className={styles.add_btn} onClick={updateFavourites}>
+                <button
+                    className={`${styles.add_btn} ${styles.remove_fav}`}
+                    onClick={updateFavourites}
+                >
                     Remove from favourites
                 </button>
             </div>
