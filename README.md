@@ -13,6 +13,12 @@ An e-commerce store built using React. The store inventory is maintained through
 -   Firestore
 -   Async + await fetch requests
 
+## Features
+
+-   Star Rating automatically populated based on rating number
+-   Working cart functionality
+-   Add products to favourites
+
 ## Tech Stack
 
 -   React (+ Vite)
